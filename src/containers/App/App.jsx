@@ -12,12 +12,31 @@ export class App extends Component {
   componentDidMount() {
     fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
       .then(res => res.json())
-      .then(currentStats => this.props.addCurrentStats(currentStats[0].lastData))
+      .then(data => this.cleanStats(data[0].lastData))
+      .then(currentStats => this.props.addCurrentStats(currentStats))
       .catch(err => console.log(err))
   }
 
+  cleanStats = stats => {
+    return ({
+      temp: {
+        stat1: stats.tempinf,
+        stat2: stats.tempf,
+        unit: '°F',
+        label1: 'Indoor',
+        label2: 'Outdoor'
+      },
+      humidity: {
+        stat1: stats.humidityin,
+        stat2: stats.humidity,
+        unit: '%',
+        label1: 'Indoor',
+        label2: 'Outdoor'
+      }
+    })
+  }
+
   render() {
-    console.log(this.props.currentStats)
     return (
       <div className="App">
         <header className="App-header">
@@ -29,7 +48,7 @@ export class App extends Component {
             <i className="fas fa-bars"/>
           </div>
         </header>
-        <Main />
+        <Main currentStats={this.props.currentStats} />
       </div>
     );
   }
