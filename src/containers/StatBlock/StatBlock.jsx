@@ -27,6 +27,9 @@ class StatBlock extends Component {
             <p className={`metric-label metric-label-${type}`}>{label2}</p>
           </div>
         </div>
+        <div className="StatBlock-graph">
+          
+        </div>
       </article>
     );
   }

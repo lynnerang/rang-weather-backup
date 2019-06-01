@@ -32,6 +32,21 @@ export class App extends Component {
         unit: '%',
         label1: 'Indoor',
         label2: 'Outdoor'
+      },
+      pressure: {
+        stat1: stats.baromrelin,
+        unit: 'REL.lnhg'
+      },
+      dew: {
+        stat1: stats.dewPoint,
+        unit: '°F'
+      },
+      wind: {
+        stat1: stats.windspeedmph,
+        stat2: stats.winddir,
+        unit: 'MPH',
+        label1: 'Speed',
+        label2: 'Direction'
       }
     })
   }
