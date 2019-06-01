@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Line } from 'react-chartjs-2';
 
-class StatBlock extends Component {
+export class StatBlock extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,6 +10,61 @@ class StatBlock extends Component {
     const { type, title } = this.props;
     const { stat1, stat2, unit, label1, label2 } = this.props.stats || '';
     const unit2 = stat2 && typeof stat2 === 'number' ? unit : '';
+
+    const times = this.props.data.map(metric => {
+      const hr = metric.date.split(':')[1];
+      const min = metric.date.split(':')[2].split('.')[0];
+      console.log(hr, min)
+      return `${hr}:${min}`;
+    });
+
+    const metrics = this.props.data.map(point => {
+      const result = point.stat2 ? point.stat2 : point.stat1;
+      return result;
+    })
+
+    const chartData = {
+      labels: times,
+      datasets: [{
+        maintainAspectRatio: false,
+        borderColor: 'white',
+        data: metrics
+      }]
+    }
+    const options = {
+      legend: {
+        display: false,
+      },
+      elements: {
+        line: {
+          tension: 0
+        },
+        point: {
+          radius: 0
+        }
+      },
+
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontSize: 10,
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontSize: 10,
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+        }]
+      }
+    };
 
     return (
       <article className={`StatBlock ${type}`}>
@@ -28,7 +84,7 @@ class StatBlock extends Component {
           </div>
         </div>
         <div className="StatBlock-graph">
-          
+          <Line data={chartData} height={60} options={options} />
         </div>
       </article>
     );

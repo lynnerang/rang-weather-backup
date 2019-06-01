@@ -70,28 +70,36 @@ export class App extends Component {
         const mins = time.date.split(':')[1].split('.')[0];
         if (mins === '00' || mins === '30') {
           return time;
-        }  
-      })
+        }
+      });
       const records = historicalData.slice(0, 8);
       return records.map(record => this.cleanStats(record));
     }
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div className="App-header-left">
-            <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
-            <h1>RangWeather</h1>
-          </div>
-          <div className="App-header-right">
-            <i className="fas fa-bars"/>
-          </div>
-        </header>
-        <Main currentStats={this.props.currentStats} />
-      </div>
-    );
+    console.log(this.props)
+    let page;
+
+    !this.props.currentStats.length || !this.props.historicalData.length ?
+      page = 'loading...'
+
+      : page = (
+        <div className="App">
+          <header className="App-header">
+            <div className="App-header-left">
+              <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
+              <h1>RangWeather</h1>
+            </div>
+            <div className="App-header-right">
+              <i className="fas fa-bars"/>
+            </div>
+          </header>
+          <Main currentStats={this.props.currentStats} historicalStats={this.props.historicalStats}/>
+        </div>
+      );
+    
+    return page;
   }
 }
 

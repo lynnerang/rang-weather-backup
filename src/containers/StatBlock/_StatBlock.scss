@@ -42,7 +42,7 @@
       .metric-number {
         margin-top: -8px;
         margin-bottom: -12px;
-        font-size: 60px;
+        font-size: 54px;
         font-family: 'PT Sans Narrow', sans-serif;
 
         span {
@@ -75,7 +75,8 @@
     width: 100%;
     margin-top: 12px;
     height: 40px;
-    // background: rgba(255, 255, 255, 0.358);
+    position: absolute;
+    bottom: 0;
   }
 
 }
