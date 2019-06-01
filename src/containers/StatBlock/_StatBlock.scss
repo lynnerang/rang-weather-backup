@@ -1,0 +1,68 @@
+.StatBlock {
+  width: 100vw;
+  height: 165px;
+  position: relative;
+
+  .StatBlock-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .StatBlock-header {
+    padding: 10px;
+    display: flex;
+
+    .StatBlock-icon {
+      margin-top: 2px;
+      height: 15px;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
+  .StatBlock-metrics {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+
+      .metric-number {
+        margin-top: -8px;
+        margin-bottom: -12px;
+        font-size: 64px;
+        font-family: 'PT Sans Narrow', sans-serif;
+
+        span {
+          font-size: 16px;
+        }
+      }
+  
+      .metric-label {
+        font-size: 14px;
+        margin: 0;
+        font-weight: 500;
+
+      }
+
+      .metric-label-temp {
+        color: #CE5E02;
+      }
+
+    }
+
+  }
+
+}
