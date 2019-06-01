@@ -8,7 +8,7 @@ class StatBlock extends Component {
   render() {
     const { type, title } = this.props;
     const { stat1, stat2, unit, label1, label2 } = this.props.stats || '';
-    const unit2 = stat2 ? unit : '';
+    const unit2 = stat2 && typeof stat2 === 'number' ? unit : '';
 
     return (
       <article className={`StatBlock ${type}`}>

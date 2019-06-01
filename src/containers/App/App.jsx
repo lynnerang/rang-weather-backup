@@ -55,9 +55,9 @@ export class App extends Component {
         unit: '°F'
       },
       wind: {
-        stat1: stats.windspeedmph,
+        stat1: stats.windspeedmph * .447,
         stat2: stats.winddir,
-        unit: 'MPH',
+        unit: 'M/SEC',
         label1: 'Speed',
         label2: 'Direction'
       }
