@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Main from '../../components/Main/Main';
 import { connect } from 'react-redux';
-import { baseUrl, apiKey, appKey } from '../../api/utilities';
-import { addCurrentStats } from '../../actions';
+import { baseUrl, apiKey, appKey, macAddress } from '../../api/utilities';
+import { addCurrentStats, addHistoricalStats } from '../../actions';
 
 export class App extends Component {
   state = {
@@ -10,10 +10,23 @@ export class App extends Component {
   }
 
   componentDidMount() {
+    this.getCurrentStats();
+    this.getHistoricalStats();
+  }
+
+  getCurrentStats = () => {
     fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
       .then(res => res.json())
       .then(data => this.cleanStats(data[0].lastData))
       .then(currentStats => this.props.addCurrentStats(currentStats))
+      .catch(err => console.log(err))
+  }
+
+  getHistoricalStats = () => {
+    fetch(`${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}&endDate=&limit=100`)
+      .then(res => res.json())
+      .then(data => this.cleanHistoricalStats(data))
+      .then(historicalStats => this.props.addHistoricalStats(historicalStats))
       .catch(err => console.log(err))
   }
 
@@ -51,6 +64,19 @@ export class App extends Component {
     })
   }
 
+  cleanHistoricalStats = timeStamps => {
+    if (timeStamps.length) {
+      const historicalData = timeStamps.filter(time => {
+        const mins = time.date.split(':')[1].split('.')[0];
+        if (mins === '00' || mins === '30') {
+          return time;
+        }  
+      })
+      const records = historicalData.slice(0, 8);
+      return records.map(record => this.cleanStats(record));
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -70,11 +96,13 @@ export class App extends Component {
 }
 
 export const mapStateToProps = state => ({
-  currentStats: state.currentStats
+  currentStats: state.currentStats,
+  historicalStats: state.historicalStats
 })
 
 export const mapDispatchToProps = dispatch => ({
-  addCurrentStats: currentStats => dispatch(addCurrentStats(currentStats))
+  addCurrentStats: currentStats => dispatch(addCurrentStats(currentStats)),
+  addHistoricalStats: historicalStats => dispatch(addHistoricalStats(historicalStats))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -4,3 +4,10 @@ export const addCurrentStats = currentStats => ({
     currentStats
   }
 })
+
+export const addHistoricalStats = historicalStats => ({
+  type: 'ADD_HISTORICAL_STATS',
+  payload: {
+    historicalStats
+  }
+})
