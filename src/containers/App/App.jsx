@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import Main from '../../components/Main/Main';
+import { connect } from 'react-redux';
+import { baseUrl, apiKey, appKey } from '../../api/utilities';
+import { addCurrentStats } from '../../actions';
 
 export class App extends Component {
   state = {
     showNav: false
   }
 
+  componentDidMount() {
+    fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
+      .then(res => res.json())
+      .then(currentStats => this.props.addCurrentStats(currentStats[0].lastData))
+      .catch(err => console.log(err))
+  }
+
   render() {
+    console.log(this.props.currentStats)
     return (
       <div className="App">
         <header className="App-header">
@@ -24,4 +35,12 @@ export class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = state => ({
+  currentStats: state.currentStats
+})
+
+export const mapDispatchToProps = dispatch => ({
+  addCurrentStats: currentStats => dispatch(addCurrentStats(currentStats))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
