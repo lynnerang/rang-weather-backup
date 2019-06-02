@@ -3,16 +3,17 @@ import Main from '../../components/Main/Main';
 import { connect } from 'react-redux';
 import { baseUrl, apiKey, appKey, macAddress } from '../../api/utilities';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
+import { mockCurrentStats, mockHistoricalStats } from '../../utils/mockData';
 
 export class App extends Component {
   state = {
     showNav: false
   }
 
-  componentDidMount() {
-    this.getCurrentStats();
-    this.getHistoricalStats();
-  }
+  // componentDidMount() {
+  //   this.getCurrentStats();
+  //   this.getHistoricalStats();
+  // }
 
   getCurrentStats = () => {
     fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
@@ -37,29 +38,34 @@ export class App extends Component {
         stat2: stats.tempf,
         unit: '°F',
         label1: 'Indoor',
-        label2: 'Outdoor'
+        label2: 'Outdoor',
+        date: stats.date
       },
       humidity: {
         stat1: stats.humidityin,
         stat2: stats.humidity,
         unit: '%',
         label1: 'Indoor',
-        label2: 'Outdoor'
+        label2: 'Outdoor',
+        date: stats.date
       },
       pressure: {
         stat1: stats.baromrelin,
-        unit: 'REL.lnhg'
+        unit: 'REL.lnhg',
+        date: stats.date
       },
       dew: {
         stat1: stats.dewPoint,
-        unit: '°F'
+        unit: '°F',
+        date: stats.date
       },
       wind: {
         stat1: stats.windspeedmph * .447,
         stat2: stats.winddir,
         unit: 'M/SEC',
         label1: 'Speed',
-        label2: 'Direction'
+        label2: 'Direction',
+        date: stats.date
       }
     })
   }
@@ -78,13 +84,13 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     let page;
 
-    !this.props.currentStats.length || !this.props.historicalData.length ?
-      page = 'loading...'
+    // !this.props.currentStats.length || !this.props.historicalData.length ?
+    //   page = 'loading...'
 
-      : page = (
+    //   :
+      page = (
         <div className="App">
           <header className="App-header">
             <div className="App-header-left">
@@ -95,7 +101,7 @@ export class App extends Component {
               <i className="fas fa-bars"/>
             </div>
           </header>
-          <Main currentStats={this.props.currentStats} historicalStats={this.props.historicalStats}/>
+          <Main currentStats={mockCurrentStats} historicalStats={mockHistoricalStats}/>
         </div>
       );
     
