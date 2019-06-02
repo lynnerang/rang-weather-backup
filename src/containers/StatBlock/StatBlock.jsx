@@ -12,10 +12,8 @@ export class StatBlock extends Component {
     const unit2 = stat2 && typeof stat2 === 'number' ? unit : '';
 
     const times = this.props.data.map(metric => {
-      const hr = metric.date.split(':')[1];
-      const min = metric.date.split(':')[2].split('.')[0];
-      console.log(hr, min)
-      return `${hr}:${min}`;
+      const hr = parseInt(metric.date.split(':')[0].split('T')[1], 10);
+      return `${hr}:`;
     });
 
     const metrics = this.props.data.map(point => {
@@ -48,15 +46,18 @@ export class StatBlock extends Component {
         yAxes: [{
           ticks: {
             fontSize: 10,
+            fontColor: 'rgba(0, 0, 0, 0.5)',
             color: 'rgba(255, 255, 255, 0.3)'
           },
           gridLines: {
-            color: 'rgba(255, 255, 255, 0.3)'
+            color: 'rgba(255, 255, 255, 0.3)',
+            drawBorder: false
           }
         }],
         xAxes: [{
           ticks: {
             fontSize: 10,
+            fontColor: 'rgba(0, 0, 0, 0.5)',
             color: 'rgba(255, 255, 255, 0.3)'
           },
           gridLines: {

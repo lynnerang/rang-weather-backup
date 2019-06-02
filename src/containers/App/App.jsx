@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import Main from '../../components/Main/Main';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { baseUrl, apiKey, appKey, macAddress } from '../../api/utilities';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
-import { mockCurrentStats, mockHistoricalStats } from '../../utils/mockData';
+import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
+import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
+import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
+import CurrentStats from '../../components/CurrentStats/CurrentStats';
+import Forecast from '../Forecast/Forecast';
+
 
 export class App extends Component {
   state = {
@@ -16,75 +20,21 @@ export class App extends Component {
   // }
 
   getCurrentStats = () => {
-    fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
-      .then(res => res.json())
-      .then(data => this.cleanStats(data[0].lastData))
+    fetchCurrentStats()
+      .then(data => cleanStats(data[0].lastData))
       .then(currentStats => this.props.addCurrentStats(currentStats))
       .catch(err => console.log(err))
   }
 
   getHistoricalStats = () => {
-    fetch(`${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}&endDate=&limit=100`)
-      .then(res => res.json())
-      .then(data => this.cleanHistoricalStats(data))
+    fetchHistoricalStats()
+      .then(data => cleanHistoricalStats(data))
       .then(historicalStats => this.props.addHistoricalStats(historicalStats))
       .catch(err => console.log(err))
   }
 
-  cleanStats = stats => {
-    return ({
-      temp: {
-        stat1: stats.tempinf,
-        stat2: stats.tempf,
-        unit: '°F',
-        label1: 'Indoor',
-        label2: 'Outdoor',
-        date: stats.date
-      },
-      humidity: {
-        stat1: stats.humidityin,
-        stat2: stats.humidity,
-        unit: '%',
-        label1: 'Indoor',
-        label2: 'Outdoor',
-        date: stats.date
-      },
-      pressure: {
-        stat1: stats.baromrelin,
-        unit: 'REL.lnhg',
-        date: stats.date
-      },
-      dew: {
-        stat1: stats.dewPoint,
-        unit: '°F',
-        date: stats.date
-      },
-      wind: {
-        stat1: stats.windspeedmph * .447,
-        stat2: stats.winddir,
-        unit: 'M/SEC',
-        label1: 'Speed',
-        label2: 'Direction',
-        date: stats.date
-      }
-    })
-  }
-
-  cleanHistoricalStats = timeStamps => {
-    if (timeStamps.length) {
-      const historicalData = timeStamps.filter(time => {
-        const mins = time.date.split(':')[1].split('.')[0];
-        if (mins === '00' || mins === '30') {
-          return time;
-        }
-      });
-      const records = historicalData.slice(0, 8);
-      return records.map(record => this.cleanStats(record));
-    }
-  }
-
   render() {
-    let page;
+    let page; 
 
     // !this.props.currentStats.length || !this.props.historicalData.length ?
     //   page = 'loading...'
@@ -101,7 +51,13 @@ export class App extends Component {
               <i className="fas fa-bars"/>
             </div>
           </header>
-          <Main currentStats={mockCurrentStats} historicalStats={mockHistoricalStats}/>
+          <Forecast />
+          <main className="App-main">
+            <Switch>
+              <Route exact path='/' render={() => <CurrentStats currentStats={mockCurrentStats} historicalStats={mockHistoricalStats} />} />
+              <Route exact path='/forecast' render={() => <Forecast />} />
+            </Switch>
+          </main>
         </div>
       );
     
