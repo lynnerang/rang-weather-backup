@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
 import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
@@ -14,10 +14,10 @@ export class App extends Component {
     showNav: false
   }
 
-  // componentDidMount() {
-  //   this.getCurrentStats();
-  //   this.getHistoricalStats();
-  // }
+  componentDidMount() {
+    this.getCurrentStats();
+    this.getHistoricalStats();
+  }
 
   getCurrentStats = () => {
     fetchCurrentStats()
@@ -40,21 +40,31 @@ export class App extends Component {
     //   page = 'loading...'
 
     //   :
+
+    const nav = this.state.showNav ? (
+      <nav className="App-nav">
+        <NavLink className="nav-link" to="/" onClick={() => this.setState({showNav: false})}>Home</NavLink>
+        <hr/>
+        <NavLink className="nav-link" to="/forecast" onClick={() => this.setState({showNav: false})}>Forecast</NavLink>
+      </nav>
+    ): null;
+      
       page = (
         <div className="App">
+          {nav}
           <header className="App-header">
             <div className="App-header-left">
               <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
               <h1>RangWeather</h1>
             </div>
             <div className="App-header-right">
-              <i className="fas fa-bars"/>
+              <i className="fas fa-bars" onClick={() => this.setState({showNav: !this.state.showNav})}/>
             </div>
           </header>
-          <Forecast />
           <main className="App-main">
+            {/* <Forecast /> */}
             <Switch>
-              <Route exact path='/' render={() => <CurrentStats currentStats={mockCurrentStats} historicalStats={mockHistoricalStats} />} />
+              <Route exact path='/' render={() => <CurrentStats currentStats={this.props.currentStats} historicalStats={this.props.historicalStats} />} />
               <Route exact path='/forecast' render={() => <Forecast />} />
             </Switch>
           </main>

@@ -19,9 +19,11 @@ class Forecast extends Component {
   }
 
   render() {
-    console.log(this.props.forecastData.timestamps)
     return (
       <section>
+        <h2 className="main-title">
+          Forecast
+        </h2>
         <StatBlock
           type="sun"
           title="sun cycle"
@@ -54,6 +56,9 @@ class Forecast extends Component {
           hasChart={false}
           hasNums={true}
         />
+        <h2 className="main-title">
+          Hourly
+        </h2>
         <StatBlock
           type="temp"
           title="temperature (°F)"
