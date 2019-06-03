@@ -1,61 +1,101 @@
-import React from 'react';
+import React, {Component} from 'react';
 import StatBlock from '../../containers/StatBlock/StatBlock';
+import { connect } from 'react-redux';
+import { addCurrentStats, addHistoricalStats } from '../../actions';
+import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
+import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
+import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
 
-const CurrentStats = props => {
-  const { temp, humidity, pressure, dew, wind } = props.currentStats;
+export class CurrentStats extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-	return (
-    <section>
-      <h2 className="main-title">
-        Right now
-      </h2>
-      <StatBlock
-        type="temp"
-        title="temperature"
-        stats={temp}
-        data={props.historicalStats.map(stat => stat.temp)}
-        timestamps={props.historicalStats.timestamps}
-        hasChart={true}
-        hasNums={true}
-      />
-			<StatBlock
-				type="humidity"
-				title="humidity"
-				stats={humidity}
-        data={props.historicalStats.map(stat => stat.humidity)}
-        timestamps={props.historicalStats.timestamps}
-        hasChart={true}
-        hasNums={true}
-			/>
-			<StatBlock
-				type="pressure"
-				title="pressure"
-				stats={pressure}
-        data={props.historicalStats.map(stat => stat.pressure)}
-        timestamps={props.historicalStats.timestamps}
-        hasChart={true}
-        hasNums={true}
-			/>
-      <StatBlock
-        type="dew"
-        title="dew point"
-        stats={dew}
-        data={props.historicalStats.map(stat => stat.dew)}
-        timestamps={props.historicalStats.timestamps}
-        hasChart={true}
-        hasNums={true}
-      />
-      <StatBlock
-        type="wind"
-        title="wind"
-        stats={wind}
-        data={props.historicalStats.map(stat => stat.wind)}
-        timestamps={props.historicalStats.timestamps}
-        hasChart={true}
-        hasNums={true}
-      />
-		</section>
-	);
-};
+  componentDidMount() {
+    this.getCurrentStats();
+    this.getHistoricalStats();
+  }
 
-export default CurrentStats;
+  getCurrentStats = () => {
+    fetchCurrentStats()
+      .then(data => cleanStats(data[0].lastData))
+      .then(currentStats => this.props.addCurrentStats(currentStats))
+      .catch(err => console.log(err))
+  }
+
+  getHistoricalStats = () => {
+    fetchHistoricalStats()
+      .then(data => cleanHistoricalStats(data))
+      .then(historicalStats => this.props.addHistoricalStats(historicalStats))
+      .catch(err => console.log(err))
+  }
+
+  render() {
+    const { temp, humidity, pressure, dew, wind } = this.props.currentStats;
+    
+    return (
+      <section>
+        <h2 className="main-title">
+          Right now
+        </h2>
+        <StatBlock
+          type="temp"
+          title="temperature"
+          stats={temp}
+          data={this.props.historicalStats.map(stat => stat.temp)}
+          timestamps={this.props.historicalStats.timestamps}
+          hasChart={true}
+          hasNums={true}
+          />
+        <StatBlock
+          type="humidity"
+          title="humidity"
+          stats={humidity}
+          data={this.props.historicalStats.map(stat => stat.humidity)}
+          timestamps={this.props.historicalStats.timestamps}
+          hasChart={true}
+          hasNums={true}
+          />
+        <StatBlock
+          type="pressure"
+          title="pressure"
+          stats={pressure}
+          data={this.props.historicalStats.map(stat => stat.pressure)}
+          timestamps={this.props.historicalStats.timestamps}
+          hasChart={true}
+          hasNums={true}
+          />
+        <StatBlock
+          type="dew"
+          title="dew point"
+          stats={dew}
+          data={this.props.historicalStats.map(stat => stat.dew)}
+          timestamps={this.props.historicalStats.timestamps}
+          hasChart={true}
+          hasNums={true}
+          />
+        <StatBlock
+          type="wind"
+          title="wind"
+          stats={wind}
+          data={this.props.historicalStats.map(stat => stat.wind)}
+          timestamps={this.props.historicalStats.timestamps}
+          hasChart={true}
+          hasNums={true}
+          />
+      </section>
+    );
+  };
+}
+
+export const mapStateToProps = state => ({
+  currentStats: state.currentStats,
+  historicalStats: state.historicalStats
+})
+
+export const mapDispatchToProps = dispatch => ({
+  addCurrentStats: currentStats => dispatch(addCurrentStats(currentStats)),
+  addHistoricalStats: historicalStats => dispatch(addHistoricalStats(historicalStats))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentStats);
