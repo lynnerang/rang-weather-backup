@@ -1,38 +1,34 @@
 export const cleanStats = stats => {
-    return ({
+  return ({
+      timestamps: stats.date.map(i => parseInt(i.date.split(':')[0].split('T')[1], 10)),
       temp: {
         stat1: stats.tempinf,
         stat2: stats.tempf,
         unit: '°F',
         label1: 'Indoor',
-        label2: 'Outdoor',
-        date: stats.date
+        label2: 'Outdoor'
       },
       humidity: {
-        stat1: stats.humidityin,
-        stat2: stats.humidity,
+        stat1: (stats.humidityin*100).toFixed(1),
+        stat2: (stats.humidity*100).toFixed(1),
         unit: '%',
         label1: 'Indoor',
-        label2: 'Outdoor',
-        date: stats.date
+        label2: 'Outdoor'
       },
       pressure: {
         stat1: stats.baromrelin,
-        unit: 'REL.lnhg',
-        date: stats.date
+        unit: 'REL.lnhg'
       },
       dew: {
         stat1: stats.dewPoint,
-        unit: '°F',
-        date: stats.date
+        unit: '°F'
       },
       wind: {
         stat1: (stats.windspeedmph * .447).toFixed(2),
         stat2: stats.winddir,
         unit: 'M/SEC',
         label1: 'Speed',
-        label2: 'Direction',
-        date: stats.date
+        label2: 'Direction'
       }
     })
 } 
@@ -44,14 +40,14 @@ export const cleanHistoricalStats = snapshots => {
       return instance;
     }
   });
-  const lastTwelveHours = hourly.slice(0, 12).reverse();
+  const last12s = hourly.slice(0, 12).reverse();
 
-  return lastTwelveHours.map(record => cleanStats(record));
+  return last12s.map(record => cleanStats(record));
 }
 
 export const cleanForecastData = data => {
-  const nextTwelveHours = data.hourly.data.slice(1, 13);
-  const nextTwelveHourTimes = nextTwelveHours.map(hour => `${new Date(hour.time * 1000).getHours()}:`);
+  const next12HrData = data.hourly.data.slice(1, 13);
+  const next12HrTimes = next12HrData.map(hour => `${new Date(hour.time * 1000).getHours()}:`);
   const sunriseTime = new Date(data.daily.data[0].sunriseTime * 1000);
   const sunsetTime = new Date(data.daily.data[0].sunsetTime * 1000);
   const moonPhase = data.daily.data[0].moonPhase;
@@ -72,45 +68,37 @@ export const cleanForecastData = data => {
   return ({
     summary: data.hourly.summary,
     icon: data.hourly.icon,
-    timestamps: nextTwelveHourTimes,
-    highTemp: {
-      num: data.daily.data[0].temperatureHigh,
+    timestamps: next12HrTimes,
+    temp: {
+      stat1: data.daily.data[0].temperatureHigh.toFixed(1),
+      stat2: data.daily.data[0].temperatureLow.toFixed(1),
       unit: '°F',
-      label: 'High'
+      label1: 'High',
+      label2: 'Low'
     },
-    lowTemp: {
-      num: data.daily.data[0].temperatureLow,
-      unit: '°F',
-      label: 'Low'
-    },
-    stormDis: {
-      num: data.currently.nearestStormDistance,
+    storm: {
+      stat1: data.currently.nearestStormDistance,
+      stat2: data.currently.nearestStormBearing,
       unit: 'miles',
-      label: 'Distance'
+      label1: 'Distance',
+      label2: 'Direction'
     },
-    stormDir: {
-      num: data.currently.nearestStormBearing,
-      unit: 'degrees',
-      label: 'Direction'
-    },
-    sunrise: {
-      time: `${sunriseTime.getHours()}:${sunriseTime.getMinutes()}`,
-      label: 'Sunrise'
-    },
-    sunset: {
-      time: `${sunsetTime.getHours()}:${sunsetTime.getMinutes()}`,
-      label: 'Sunset'
+    sun: {
+      stat1: `${sunriseTime.getHours()}:${sunriseTime.getMinutes()}`,
+      label1: 'Sunrise',
+      stat2: `${sunsetTime.getHours()}:${sunsetTime.getMinutes()}`,
+      label2: 'Sunset'
     },
     moon: {
-      num: Math.floor(moonPhase * 100),
-      unit: '%',
-      label: moonPhaseTxt
+      stat1: Math.floor(moonPhase * 100),
+      unit: '% FULL',
+      label1: moonPhaseTxt
     },
-    tempTrend: nextTwelveHours.map(hour => hour.temperature),
-    humidityTrend: nextTwelveHours.map(hour => hour.humidity),
-    pressureTrend: nextTwelveHours.map(hour => hour.pressure),
-    dewTrend: nextTwelveHours.map(hour => hour.dewPoint),
-    windSpeedTrend: nextTwelveHours.map(hour => hour.windSpeed)
+    tempTrend: next12HrData.map(hour => hour.temperature.toFixed(1)),
+    humidityTrend: next12HrData.map(hour => (hour.humidity*100).toFixed(1)),
+    pressureTrend: next12HrData.map(hour => hour.pressure),
+    dewTrend: next12HrData.map(hour => hour.dewPoint),
+    windTrend: next12HrData.map(hour => hour.windSpeed)
   })
 }
 

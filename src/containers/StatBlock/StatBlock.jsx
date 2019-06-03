@@ -7,28 +7,26 @@ export class StatBlock extends Component {
   }
 
   render() {
-    const { type, title } = this.props;
-    const { stat1, stat2, unit, label1, label2 } = this.props.stats || '';
-    const unit2 = stat2 && typeof stat2 === 'number' ? unit : '';
-
-    const times = this.props.data.map(metric => {
-      const hr = parseInt(metric.date.split(':')[0].split('T')[1], 10);
-      return `${hr}:`;
-    });
-
-    const metrics = this.props.data.map(point => {
-      const result = point.stat2 ? point.stat2 : point.stat1;
+    const { hasChart, hasNums, type, title, stats } = this.props || '';
+    const {stat1, stat2, unit, label1, label2} = hasNums ? stats || '' : '';
+    const unit2 = stat2 ? unit : '';
+    const chartHeight = hasNums && hasChart ? 60 : 70;
+    const isShort = hasNums && hasChart ? '' : 'block-short';
+    
+    const metrics = hasNums && hasChart ? this.props.data.map(i => {
+      const result = i.stat2 ? i.stat2 : i.stat1;
       return result;
-    })
-
+    }) : this.props.data;
+      
     const chartData = {
-      labels: times,
+      labels: this.props.timestamps,
       datasets: [{
         maintainAspectRatio: false,
         borderColor: 'white',
         data: metrics
       }]
     }
+    
     const options = {
       legend: {
         display: false,
@@ -65,14 +63,20 @@ export class StatBlock extends Component {
           },
         }]
       }
-    };
+    }
+
+    const chart = hasChart ?
+      <div className="StatBlock-graph">
+        <Line data={chartData} height={chartHeight} options={options} />
+      </div>
+      : null;
 
     return (
-      <article className={`StatBlock ${type}`}>
+      <article className={`StatBlock ${type} ${isShort}`}>
         <img className="StatBlock-bg" src={require(`../../images/${type}bg.png`)} />
         <div className="StatBlock-header">
           <img className="StatBlock-icon" src={require(`../../images/${type}icon.png`)} alt={`${type} icon`}/>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
         </div>
         <div className="StatBlock-metrics">
           <div className="metric left-metric">
@@ -84,9 +88,7 @@ export class StatBlock extends Component {
             <p className={`metric-label metric-label-${type}`}>{label2}</p>
           </div>
         </div>
-        <div className="StatBlock-graph">
-          <Line data={chartData} height={60} options={options} />
-        </div>
+        {chart}
       </article>
     );
   }

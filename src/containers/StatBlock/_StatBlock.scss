@@ -3,6 +3,14 @@
   height: 165px;
   position: relative;
 
+  &.block-short {
+    height: 120px;
+
+    .StatBlock-graph {
+      margin-top: 2px;
+    }
+  }
+
   .StatBlock-bg {
     height: 100%;
     width: 100%;
@@ -22,7 +30,7 @@
       height: 15px;
     }
 
-    h2 {
+    h3 {
       text-transform: uppercase;
       text-align: left;
       font-size: 15px;
@@ -68,15 +76,27 @@
       .metric-label-wind {
         color: #44644B;
       }
+
+      .metric-label-temphilo {
+        color: rgb(60, 59, 108);
+      }
+
+      .metric-label-sun {
+        color: rgb(136, 58, 24);
+      }
+
+      .metric-label-storm {
+        color: rgb(24, 24, 24);
+      }
     }
   }
 
   .StatBlock-graph {
     width: 100%;
-    margin-top: 12px;
-    height: 40px;
-    position: absolute;
-    bottom: 20px;
+    margin-top: 10px;
+    // height: 40px;
+    // position: absolute;
+    // bottom: 20px;
   }
 
 }
