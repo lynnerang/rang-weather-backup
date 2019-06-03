@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import Main from '../../components/Main/Main';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { baseUrl, apiKey, appKey, macAddress } from '../../api/utilities';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
+import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
+import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
+import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
+import CurrentStats from '../../components/CurrentStats/CurrentStats';
+import Forecast from '../Forecast/Forecast';
+
 
 export class App extends Component {
   state = {
@@ -15,83 +20,58 @@ export class App extends Component {
   }
 
   getCurrentStats = () => {
-    fetch(`${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`)
-      .then(res => res.json())
-      .then(data => this.cleanStats(data[0].lastData))
+    fetchCurrentStats()
+      .then(data => cleanStats(data[0].lastData))
       .then(currentStats => this.props.addCurrentStats(currentStats))
       .catch(err => console.log(err))
   }
 
   getHistoricalStats = () => {
-    fetch(`${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}&endDate=&limit=100`)
-      .then(res => res.json())
-      .then(data => this.cleanHistoricalStats(data))
+    fetchHistoricalStats()
+      .then(data => cleanHistoricalStats(data))
       .then(historicalStats => this.props.addHistoricalStats(historicalStats))
       .catch(err => console.log(err))
   }
 
-  cleanStats = stats => {
-    return ({
-      temp: {
-        stat1: stats.tempinf,
-        stat2: stats.tempf,
-        unit: '°F',
-        label1: 'Indoor',
-        label2: 'Outdoor'
-      },
-      humidity: {
-        stat1: stats.humidityin,
-        stat2: stats.humidity,
-        unit: '%',
-        label1: 'Indoor',
-        label2: 'Outdoor'
-      },
-      pressure: {
-        stat1: stats.baromrelin,
-        unit: 'REL.lnhg'
-      },
-      dew: {
-        stat1: stats.dewPoint,
-        unit: '°F'
-      },
-      wind: {
-        stat1: stats.windspeedmph * .447,
-        stat2: stats.winddir,
-        unit: 'M/SEC',
-        label1: 'Speed',
-        label2: 'Direction'
-      }
-    })
-  }
-
-  cleanHistoricalStats = timeStamps => {
-    if (timeStamps.length) {
-      const historicalData = timeStamps.filter(time => {
-        const mins = time.date.split(':')[1].split('.')[0];
-        if (mins === '00' || mins === '30') {
-          return time;
-        }  
-      })
-      const records = historicalData.slice(0, 8);
-      return records.map(record => this.cleanStats(record));
-    }
-  }
-
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div className="App-header-left">
-            <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
-            <h1>RangWeather</h1>
-          </div>
-          <div className="App-header-right">
-            <i className="fas fa-bars"/>
-          </div>
-        </header>
-        <Main currentStats={this.props.currentStats} />
-      </div>
-    );
+    let page; 
+
+    // !this.props.currentStats.length || !this.props.historicalData.length ?
+    //   page = 'loading...'
+
+    //   :
+
+    const nav = this.state.showNav ? (
+      <nav className="App-nav">
+        <NavLink className="nav-link" to="/" onClick={() => this.setState({showNav: false})}>Home</NavLink>
+        <hr/>
+        <NavLink className="nav-link" to="/forecast" onClick={() => this.setState({showNav: false})}>Forecast</NavLink>
+      </nav>
+    ): null;
+      
+      page = (
+        <div className="App">
+          {nav}
+          <header className="App-header">
+            <div className="App-header-left">
+              <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
+              <h1>RangWeather</h1>
+            </div>
+            <div className="App-header-right">
+              <i className="fas fa-bars" onClick={() => this.setState({showNav: !this.state.showNav})}/>
+            </div>
+          </header>
+          <main className="App-main">
+            {/* <Forecast /> */}
+            <Switch>
+              <Route exact path='/' render={() => <CurrentStats currentStats={this.props.currentStats} historicalStats={this.props.historicalStats} />} />
+              <Route exact path='/forecast' render={() => <Forecast />} />
+            </Switch>
+          </main>
+        </div>
+      );
+    
+    return page;
   }
 }
 

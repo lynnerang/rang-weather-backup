@@ -11,3 +11,10 @@ export const addHistoricalStats = historicalStats => ({
     historicalStats
   }
 })
+
+export const addForecastData = forecastData => ({
+  type: 'ADD_FORECAST_DATA',
+  payload: {
+    forecastData
+  }
+})

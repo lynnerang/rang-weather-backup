@@ -1,21 +1,82 @@
 import React, { Component } from 'react';
+import { Line } from 'react-chartjs-2';
 
-class StatBlock extends Component {
+export class StatBlock extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { type, title } = this.props;
-    const { stat1, stat2, unit, label1, label2 } = this.props.stats || '';
-    const unit2 = stat2 && typeof stat2 === 'number' ? unit : '';
+    const { hasChart, hasNums, type, title, stats } = this.props || '';
+    const {stat1, stat2, unit, label1, label2} = hasNums ? stats || '' : '';
+    const unit2 = stat2 ? unit : '';
+    const chartHeight = hasNums && hasChart ? 60 : 70;
+    const isShort = hasNums && hasChart ? '' : 'block-short';
+    
+    const metrics = hasNums && hasChart ? this.props.data.map(i => {
+      const result = i.stat2 ? i.stat2 : i.stat1;
+      return result;
+    }) : this.props.data;
+      
+    const chartData = {
+      labels: this.props.timestamps,
+      datasets: [{
+        maintainAspectRatio: false,
+        borderColor: 'white',
+        data: metrics
+      }]
+    }
+    
+    const options = {
+      legend: {
+        display: false,
+      },
+      elements: {
+        line: {
+          tension: 0
+        },
+        point: {
+          radius: 0
+        }
+      },
+
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontSize: 10,
+            fontColor: 'rgba(0, 0, 0, 0.5)',
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)',
+            drawBorder: false
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontSize: 10,
+            fontColor: 'rgba(0, 0, 0, 0.5)',
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+        }]
+      }
+    }
+
+    const chart = hasChart ?
+      <div className="StatBlock-graph">
+        <Line data={chartData} height={chartHeight} options={options} />
+      </div>
+      : null;
 
     return (
-      <article className={`StatBlock ${type}`}>
+      <article className={`StatBlock ${type} ${isShort}`}>
         <img className="StatBlock-bg" src={require(`../../images/${type}bg.png`)} />
         <div className="StatBlock-header">
           <img className="StatBlock-icon" src={require(`../../images/${type}icon.png`)} alt={`${type} icon`}/>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
         </div>
         <div className="StatBlock-metrics">
           <div className="metric left-metric">
@@ -27,9 +88,7 @@ class StatBlock extends Component {
             <p className={`metric-label metric-label-${type}`}>{label2}</p>
           </div>
         </div>
-        <div className="StatBlock-graph">
-          
-        </div>
+        {chart}
       </article>
     );
   }
