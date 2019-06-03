@@ -9,7 +9,7 @@ export const fetchCurrentStats = async () => {
 };
 
 export const fetchHistoricalStats = async () => {
-  const res = await fetch(`${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}&endDate=&limit=100`)
+  const res = await fetch(`${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}`)
   if (!res.ok) {
     throw new Error('Failed to fetch historical stats data.');
   }

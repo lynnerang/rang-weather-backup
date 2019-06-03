@@ -3,17 +3,21 @@ import StatBlock from '../../containers/StatBlock/StatBlock';
 import { connect } from 'react-redux';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
 import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
-import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
+import { fetchCurrentStats, fetchHistoricalStats, fetchBackyardData } from '../../util/api';
 import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
 
 export class CurrentStats extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      data: {}
+    }
   }
 
   componentDidMount() {
     this.getCurrentStats();
-    this.getHistoricalStats();
+    setTimeout(() => this.getHistoricalStats(), 4000);
   }
 
   getCurrentStats = () => {
@@ -32,6 +36,7 @@ export class CurrentStats extends Component {
 
   render() {
     const { temp, humidity, pressure, dew, wind } = this.props.currentStats;
+    const timestamps = this.props.historicalStats.map(i => parseInt(i.timestamp.split(':')[0].split('T')[1], 10) + ':');
     
     return (
       <section>
@@ -43,7 +48,7 @@ export class CurrentStats extends Component {
           title="temperature"
           stats={temp}
           data={this.props.historicalStats.map(stat => stat.temp)}
-          timestamps={this.props.historicalStats.timestamps}
+          timestamps={timestamps}
           hasChart={true}
           hasNums={true}
           />
@@ -52,7 +57,7 @@ export class CurrentStats extends Component {
           title="humidity"
           stats={humidity}
           data={this.props.historicalStats.map(stat => stat.humidity)}
-          timestamps={this.props.historicalStats.timestamps}
+          timestamps={timestamps}
           hasChart={true}
           hasNums={true}
           />
@@ -61,7 +66,7 @@ export class CurrentStats extends Component {
           title="pressure"
           stats={pressure}
           data={this.props.historicalStats.map(stat => stat.pressure)}
-          timestamps={this.props.historicalStats.timestamps}
+          timestamps={timestamps}
           hasChart={true}
           hasNums={true}
           />
@@ -70,7 +75,7 @@ export class CurrentStats extends Component {
           title="dew point"
           stats={dew}
           data={this.props.historicalStats.map(stat => stat.dew)}
-          timestamps={this.props.historicalStats.timestamps}
+          timestamps={timestamps}
           hasChart={true}
           hasNums={true}
           />
@@ -79,7 +84,7 @@ export class CurrentStats extends Component {
           title="wind"
           stats={wind}
           data={this.props.historicalStats.map(stat => stat.wind)}
-          timestamps={this.props.historicalStats.timestamps}
+          timestamps={timestamps}
           hasChart={true}
           hasNums={true}
           />
