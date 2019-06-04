@@ -58,7 +58,7 @@ export class CurrentStats extends Component {
       page = (
         <section>
           <h2 className="main-title">
-            Right now
+            Right now 
           </h2>
           <StatBlock
             type="temp"

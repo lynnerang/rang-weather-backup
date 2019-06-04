@@ -13,11 +13,11 @@ export class App extends Component {
 		const nav = this.state.showNav ? (
 			<nav className="App-nav">
 				<NavLink className="nav-link" to="/" onClick={() => this.setState({ showNav: false })}>
-					Home
+          <i class="fas fa-home"></i>  Home
 				</NavLink>
 				<hr />
 				<NavLink className="nav-link" to="/forecast" onClick={() => this.setState({ showNav: false })}>
-					Forecast
+          <i class="fas fa-cloud-sun"></i>  Forecast
 				</NavLink>
 			</nav>
 		) : null;
