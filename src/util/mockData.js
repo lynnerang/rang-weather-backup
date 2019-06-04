@@ -1,36 +1,37 @@
 export const mockRawCurrentStats = {
-  dateutc: 1559334720000,
-  winddir: 94,
-  windspeedmph: 1.8,
-  windgustmph: 2.2,
-  maxdailygust: 10.3,
-  tempf: 75.2,
-  hourlyrainin: 0,
-  eventrainin: 0,
-  dailyrainin: 0,
-  weeklyrainin: 0.98,
-  monthlyrainin: 0.98,
-  totalrainin: 3.88,
-  baromrelin: 30.17,
-  baromabsin: 24.82,
-  humidity: 24,
-  tempinf: 75.7,
-  humidityin: 33,
-  uv: 8,
-  solarradiation: 829.44,
-  feelsLike: 73.55,
-  dewPoint: 35.92,
-  date: '2019-05-31T20:32:00.000Z'
+	dateutc: 1559334720000,
+	winddir: 94,
+	windspeedmph: 1.8,
+	windgustmph: 2.2,
+	maxdailygust: 10.3,
+	tempf: 75.2,
+	hourlyrainin: 0,
+	eventrainin: 0,
+	dailyrainin: 0,
+	weeklyrainin: 0.98,
+	monthlyrainin: 0.98,
+	totalrainin: 3.88,
+	baromrelin: 30.17,
+	baromabsin: 24.82,
+	humidity: 24,
+	tempinf: 75.7,
+	humidityin: 33,
+	uv: 8,
+	solarradiation: 829.44,
+	feelsLike: 73.55,
+	dewPoint: 35.92,
+	date: '2019-05-31T20:32:00.000Z'
 };
 
 export const mockCurrentStats = {
+	timestamp: '2019-05-31T20:32:00.000Z',
 	dew: {
-    stat1: 35.92,
+		stat1: 35.92,
 		unit: '°F'
 	},
 	humidity: {
-    stat1: 33,
-    stat2: 24,
+		stat1: (33).toFixed(1),
+		stat2: (24).toFixed(1),
 		unit: '%',
 		label1: 'Indoor',
 		label2: 'Outdoor'
@@ -47,7 +48,7 @@ export const mockCurrentStats = {
 		label2: 'Outdoor'
 	},
 	wind: {
-		stat1: .8,
+		stat1: "0.8",
 		stat2: 94,
 		unit: 'M/SEC',
 		label1: 'Speed',
@@ -55,294 +56,433 @@ export const mockCurrentStats = {
 	}
 };
 
+export const mockRawHistoricalStats = [
+  {
+    "dateutc": 1559592300000,
+    "winddir": 357,
+    "windspeedmph": 11.4,
+    "windgustmph": 12.5,
+    "maxdailygust": 19.5,
+    "tempf": 73.8,
+    "hourlyrainin": 0,
+    "eventrainin": 0.06,
+    "dailyrainin": 0,
+    "weeklyrainin": 0.06,
+    "monthlyrainin": 0.06,
+    "totalrainin": 3.94,
+    "baromrelin": 30.1,
+    "baromabsin": 24.76,
+    "humidity": 46,
+    "tempinf": 76.3,
+    "humidityin": 40,
+    "uv": 3,
+    "solarradiation": 374.35,
+    "feelsLike": 73.04,
+    "dewPoint": 51.71,
+    "lastRain": "2019-06-02T22:02:00.000Z",
+    "date": "2019-06-03T20:00:00.000Z"
+  }
+]
+
 export const mockHistoricalStats = [
   {
-    timestamps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-		dew: {
-			stat1: 47.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 36,
-			stat2: 41,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 30.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 77.7,
-			stat2: 72.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:02:00.000Z'
-		},
-		wind: {
-			stat1: 1.1175,
-			stat2: 3,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:04:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 37.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 46,
-			stat2: 31,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 32.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 71.7,
-			stat2: 70.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 2.1175,
-			stat2: 4.2,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 47.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 36,
-			stat2: 41,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 30.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 77.7,
-			stat2: 72.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:03:00.000Z'
-		},
-		wind: {
-			stat1: 1.12,
-			stat2: 3,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 37.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 46,
-			stat2: 31,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 32.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 71.7,
-			stat2: 70.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 2.11,
-			stat2: 4.2,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 47.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 36,
-			stat2: 41,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 30.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 77.7,
-			stat2: 72.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 1.11,
-			stat2: 3,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 37.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 46,
-			stat2: 31,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 32.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 71.7,
-			stat2: 70.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 2.11,
-			stat2: 4.2,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 47.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 36,
-			stat2: 41,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 30.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 77.7,
-			stat2: 72.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 1.11,
-			stat2: 3,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	},
-	{
-		dew: {
-			stat1: 37.63,
-			unit: '°F',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		humidity: {
-			stat1: 46,
-			stat2: 31,
-			unit: '%',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		pressure: {
-			stat1: 32.15,
-			unit: 'REL.lnhg',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		temp: {
-			stat1: 71.7,
-			stat2: 70.7,
-			unit: '°F',
-			label1: 'Indoor',
-			label2: 'Outdoor',
-			date: '2019-06-01T20:30:00.000Z'
-		},
-		wind: {
-			stat1: 2.11,
-			stat2: 4.2,
-			unit: 'M/SEC',
-			label1: 'Speed',
-			label2: 'Direction',
-			date: '2019-06-01T20:30:00.000Z'
-		}
-	}
-];
+    timestamp: '2019-06-03T20:00:00.000Z',
+    temp: {
+      stat1: 76.3,
+      stat2: 73.8,
+      unit: '°F',
+      label1: 'Indoor',
+      label2: 'Outdoor'
+    },
+    humidity: {
+      stat1: '40.0',
+      stat2: '46.0',
+      unit: '%',
+      label1: 'Indoor',
+      label2: 'Outdoor'
+    },
+    pressure: { stat1: 30.1, unit: 'REL.lnhg' },
+    dew: { stat1: 51.71, unit: '°F' },
+    wind: {
+      stat1: '5.1',
+      stat2: 357,
+      unit: 'M/SEC',
+      label1: 'Speed',
+      label2: 'Direction'
+    }
+  }
+]
+
+
+export const mockRawForecastData = {
+    "latitude": 40.0114669,
+    "longitude": -105.0940768,
+    "timezone": "America/Denver",
+    "currently": {
+      "time": 1559618701,
+      "summary": "Partly Cloudy",
+      "icon": "partly-cloudy-night",
+      "nearestStormDistance": 0,
+      "precipIntensity": 0.003,
+      "precipIntensityError": 0.002,
+      "precipProbability": 0.38,
+      "precipType": "rain",
+      "temperature": 64.49,
+      "apparentTemperature": 64.49,
+      "dewPoint": 46.31,
+      "humidity": 0.52,
+      "pressure": 1012.62,
+      "windSpeed": 1.45,
+      "windGust": 6.16,
+      "windBearing": 267,
+      "cloudCover": 0.59,
+      "uvIndex": 0,
+      "visibility": 4.34,
+      "ozone": 323.99
+    },
+    "hourly": {
+      "summary": "Partly cloudy throughout the day.",
+      "icon": "partly-cloudy-night",
+      "data": [
+        {
+          "time": 1559617200,
+          "summary": "Mostly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0.0001,
+          "precipProbability": 0.39,
+          "precipType": "rain",
+          "temperature": 65.24,
+          "apparentTemperature": 65.24,
+          "dewPoint": 46.51,
+          "humidity": 0.51,
+          "pressure": 1012.71,
+          "windSpeed": 3.19,
+          "windGust": 6.37,
+          "windBearing": 250,
+          "cloudCover": 0.63,
+          "uvIndex": 0,
+          "visibility": 4.04,
+          "ozone": 322.94
+        },
+        {
+          "time": 1559620800,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 63.45,
+          "apparentTemperature": 63.45,
+          "dewPoint": 46.02,
+          "humidity": 0.53,
+          "pressure": 1012.5,
+          "windSpeed": 1.54,
+          "windGust": 5.85,
+          "windBearing": 27,
+          "cloudCover": 0.53,
+          "uvIndex": 0,
+          "visibility": 4.77,
+          "ozone": 325.46
+        },
+        {
+          "time": 1559624400,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0.001,
+          "precipProbability": 0.01,
+          "precipType": "rain",
+          "temperature": 60.81,
+          "apparentTemperature": 60.81,
+          "dewPoint": 46.18,
+          "humidity": 0.59,
+          "pressure": 1011.82,
+          "windSpeed": 6.32,
+          "windGust": 6.32,
+          "windBearing": 165,
+          "cloudCover": 0.39,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 328.85
+        },
+        {
+          "time": 1559628000,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0.0005,
+          "precipProbability": 0.02,
+          "precipType": "rain",
+          "temperature": 59.16,
+          "apparentTemperature": 59.16,
+          "dewPoint": 45.62,
+          "humidity": 0.61,
+          "pressure": 1011.46,
+          "windSpeed": 5.68,
+          "windGust": 7.14,
+          "windBearing": 225,
+          "cloudCover": 0.38,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 331.65
+        },
+        {
+          "time": 1559631600,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0.0002,
+          "precipProbability": 0.01,
+          "precipType": "rain",
+          "temperature": 58.5,
+          "apparentTemperature": 58.5,
+          "dewPoint": 43.9,
+          "humidity": 0.58,
+          "pressure": 1011.81,
+          "windSpeed": 5.78,
+          "windGust": 8.89,
+          "windBearing": 244,
+          "cloudCover": 0.59,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 334.03
+        },
+        {
+          "time": 1559635200,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 57.49,
+          "apparentTemperature": 57.49,
+          "dewPoint": 43.12,
+          "humidity": 0.59,
+          "pressure": 1011.77,
+          "windSpeed": 6.5,
+          "windGust": 8.65,
+          "windBearing": 287,
+          "cloudCover": 0.41,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 336.01
+        },
+        {
+          "time": 1559638800,
+          "summary": "Partly Cloudy",
+          "icon": "partly-cloudy-night",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 55.34,
+          "apparentTemperature": 55.34,
+          "dewPoint": 43.09,
+          "humidity": 0.63,
+          "pressure": 1011.93,
+          "windSpeed": 5.12,
+          "windGust": 7.71,
+          "windBearing": 253,
+          "cloudCover": 0.29,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 336.97
+        },
+        {
+          "time": 1559642400,
+          "summary": "Clear",
+          "icon": "clear-night",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 53.31,
+          "apparentTemperature": 53.31,
+          "dewPoint": 41.91,
+          "humidity": 0.65,
+          "pressure": 1012.04,
+          "windSpeed": 6.5,
+          "windGust": 7.33,
+          "windBearing": 289,
+          "cloudCover": 0.22,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 336.01
+        },
+        {
+          "time": 1559646000,
+          "summary": "Clear",
+          "icon": "clear-night",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 51.57,
+          "apparentTemperature": 51.57,
+          "dewPoint": 40.93,
+          "humidity": 0.67,
+          "pressure": 1012.18,
+          "windSpeed": 6.64,
+          "windGust": 7.47,
+          "windBearing": 279,
+          "cloudCover": 0.07,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 333.96
+        },
+        {
+          "time": 1559649600,
+          "summary": "Clear",
+          "icon": "clear-day",
+          "precipIntensity": 0.0022,
+          "precipProbability": 0.01,
+          "precipType": "rain",
+          "temperature": 51.47,
+          "apparentTemperature": 51.47,
+          "dewPoint": 40.39,
+          "humidity": 0.66,
+          "pressure": 1012.27,
+          "windSpeed": 6.98,
+          "windGust": 7.79,
+          "windBearing": 276,
+          "cloudCover": 0.06,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 332.48
+        },
+        {
+          "time": 1559653200,
+          "summary": "Clear",
+          "icon": "clear-day",
+          "precipIntensity": 0,
+          "precipProbability": 0,
+          "temperature": 56.11,
+          "apparentTemperature": 56.11,
+          "dewPoint": 41.03,
+          "humidity": 0.57,
+          "pressure": 1012.16,
+          "windSpeed": 5.37,
+          "windGust": 6.57,
+          "windBearing": 215,
+          "cloudCover": 0.05,
+          "uvIndex": 0,
+          "visibility": 10,
+          "ozone": 332.23
+        }
+      ]
+  },
+  "daily": {
+    "summary": "Light rain on Wednesday through Sunday, with high temperatures peaking at 83°F on Saturday.",
+    "icon": "rain",
+    "data": [
+      {
+        "time": 1559541600,
+        "summary": "Partly cloudy starting in the afternoon.",
+        "icon": "partly-cloudy-night",
+        "sunriseTime": 1559561658,
+        "sunsetTime": 1559615148,
+        "moonPhase": 0.01,
+        "precipIntensity": 0.0008,
+        "precipIntensityMax": 0.0094,
+        "precipIntensityMaxTime": 1559606400,
+        "precipProbability": 0.4,
+        "precipType": "rain",
+        "temperatureHigh": 76.19,
+        "temperatureHighTime": 1559588400,
+        "temperatureLow": 51.47,
+        "temperatureLowTime": 1559649600,
+        "apparentTemperatureHigh": 76.19,
+        "apparentTemperatureHighTime": 1559588400,
+        "apparentTemperatureLow": 51.47,
+        "apparentTemperatureLowTime": 1559649600,
+        "dewPoint": 44.93,
+        "humidity": 0.5,
+        "pressure": 1011.46,
+        "windSpeed": 0.99,
+        "windGust": 15.74,
+        "windGustTime": 1559599200,
+        "windBearing": 192,
+        "cloudCover": 0.27,
+        "uvIndex": 9,
+        "uvIndexTime": 1559584800,
+        "visibility": 4.71,
+        "ozone": 323.52,
+        "temperatureMin": 53.25,
+        "temperatureMinTime": 1559563200,
+        "temperatureMax": 76.19,
+        "temperatureMaxTime": 1559588400,
+        "apparentTemperatureMin": 53.25,
+        "apparentTemperatureMinTime": 1559563200,
+        "apparentTemperatureMax": 76.19,
+        "apparentTemperatureMaxTime": 1559588400
+      },
+      {
+        "time": 1559628000,
+        "summary": "Partly cloudy starting in the afternoon.",
+        "icon": "partly-cloudy-night",
+        "sunriseTime": 1559648038,
+        "sunsetTime": 1559701588,
+        "moonPhase": 0.04,
+        "precipIntensity": 0.0019,
+        "precipIntensityMax": 0.0089,
+        "precipIntensityMaxTime": 1559692800,
+        "precipProbability": 0.19,
+        "precipType": "rain",
+        "temperatureHigh": 78.12,
+        "temperatureHighTime": 1559671200,
+        "temperatureLow": 54.15,
+        "temperatureLowTime": 1559736000,
+        "apparentTemperatureHigh": 78.12,
+        "apparentTemperatureHighTime": 1559671200,
+        "apparentTemperatureLow": 54.15,
+        "apparentTemperatureLowTime": 1559736000,
+        "dewPoint": 43.46,
+        "humidity": 0.47,
+        "pressure": 1011.88,
+        "windSpeed": 1.63,
+        "windGust": 17.62,
+        "windGustTime": 1559692800,
+        "windBearing": 257,
+        "cloudCover": 0.3,
+        "uvIndex": 10,
+        "uvIndexTime": 1559674800,
+        "visibility": 10,
+        "ozone": 329.35,
+        "temperatureMin": 51.47,
+        "temperatureMinTime": 1559649600,
+        "temperatureMax": 78.12,
+        "temperatureMaxTime": 1559671200,
+        "apparentTemperatureMin": 51.47,
+        "apparentTemperatureMinTime": 1559649600,
+        "apparentTemperatureMax": 78.12,
+        "apparentTemperatureMaxTime": 1559671200
+      }
+    ]
+    }
+    
+}
+  
+export const mockForecastData = {
+  dewTrend: [46.02, 46.18, 45.62, 43.9, 43.12, 43.09, 41.91, 40.93, 40.39, 41.03],
+  humidityTrend: ['53.0', '59.0', '61.0', '58.0', '59.0', '63.0', '65.0', '67.0', '66.0', '57.0'],
+  icon: 'partly-cloudy-night',
+  moon: {
+    label1: '',
+    stat1: 1,
+    unit: '% FULL'
+  },
+  pressureTrend: [1012.5, 1011.82, 1011.46, 1011.81, 1011.77, 1011.93, 1012.04, 1012.18, 1012.27, 1012.16],
+  storm: {
+    label1: 'Distance',
+    label2: 'Direction',
+    stat1: 0,
+    stat2: undefined,
+    unit: 'miles'
+  },
+  summary: 'Partly cloudy throughout the day.',
+  sun: {
+    label1: 'Sunrise',
+    label2: 'Sunset',
+    stat1: '5:34',
+    stat2: '20:25'
+  },
+  temp: {
+    label1: 'High',
+    label2: 'Low',
+    stat1: (76.2).toFixed(1),
+    stat2: (51.5).toFixed(1),
+    unit: '°F'
+  },
+  tempTrend: [(63.5).toFixed(1), (60.8).toFixed(1), (59.2).toFixed(1), (58.5).toFixed(1), (57.5).toFixed(1), (55.3).toFixed(1), (53.3).toFixed(1), (51.6).toFixed(1), (51.5).toFixed(1), (56.1).toFixed(1)],
+  timestamps: ['22:', '23:', '0:', '1:', '2:', '3:', '4:', '5:', '6:', '7:'],
+  windTrend: [1.54, 6.32, 5.68, 5.78, 6.5, 5.12, 6.5, 6.64, 6.98, 5.37]
+}

@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { addForecastData } from '../../actions';
 import { cleanForecastData } from '../../util/cleaners';
 import { fetchForecastData } from '../../util/api';
-import StatBlock from '../../containers/StatBlock/StatBlock';
+import StatBlock from '../../components/StatBlock/StatBlock';
+import PropTypes from 'prop-types';
 
-class Forecast extends Component {
+export class Forecast extends Component {
 
   componentDidMount() {
-    fetchForecastData()
+    this.getForecastData();
+  }
+
+  getForecastData = async () => {
+    return await fetchForecastData()
       .then(data => cleanForecastData(data))
       .then(forecastData => this.props.addForecastData(forecastData))
       .catch(err => console.log(err))
@@ -99,6 +104,14 @@ class Forecast extends Component {
     );
   }
 }
+
+Forecast.propTypes = {
+  forecastData: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ]),
+  addForecastData: PropTypes.func
+};
 
 export const mapStateToProps = state => ({
   forecastData: state.forecastData
