@@ -1,68 +1,92 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Table of contents
+* [Intro](#RangWeather-App)
+* [Screenshots](#Screenshots)
+* [Getting Started](#Getting-Started)
+* [How to Use](#How-to-Use)
+* [Project Emphasis](#Project-Emphasis)
+* [UI Design](#UI-Design)
+* [License](#License)
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# RangWeather App
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This project is a Turing front-end evelopment project focused on working with React, Redux, and and Enzyme/Jest.
 
-### `npm test`
+This was a custom app I built for my household to track weather metrics we cared about that are being measured by a weather station in our backyard.  I was excited to see there's an AmbientWeather API for this, and also made use of Darksky's API for weather forecasting so we could see both historical metrics and future forcasting in our area.  I passed on any details in other weather apps we don't care for and included the metrics we most care about.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Home page](/src/screenshots/1.png)
+![General forecast stats](/src/screenshots/2.png)
+![Hourly forecast](/src/screenshots/3.png)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+If you'd like to clone this repository to your own local machine, run the following command in your terminal:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```shell
+git clone https://github.com/lynnerang/rang-weather.git
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then run the following command to install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```shell
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To view the app in action, run the following command in your terminal:
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Then, go to `http://localhost:3000/` in your browser to see the code running in the browser.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## How to Use
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. On the home page, you can see horizontal scrolling lists of movies from different categories, and you can click on any one to view more details.
+2. You can use the global navigation to click into different categories of movies, and can view movie details from clicking on any poster/title.
+3. You can click 'Sign Up' to create an account and keep track of your favorite movies.
+4. Once logged in, you'll see an option to add movies to your favorites on any movie details page.
+5. You can then view a list of all your favorite movies from the 'Favorites' link in navigation.
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## UI Design
 
-### Making a Progressive Web App
+The spec we were given had no information on UI design elements, so we started by wireframing a general idea of our layout.  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![Wireframes](/src/screenshots/5.png)
 
-### Advanced Configuration
+Then we created a high-fidelity prototype of the design on Figma to have a more detailed idea of where we wanted everything to go on the different web pages.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+![Figma designs](/src/screenshots/6.png)
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Project Emphasis
 
-### `npm run build` fails to minify
+View the project specification on the <a href="http://frontend.turing.io/projects/movie-tracker.html">Turing webpage for this project</a>.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [x] HTML & CSS 
+- [x] Flex-box
+- [x] Grid CSS
+- [x] Wireframing
+- [x] UI design
+- [x] React
+- [x] React router
+- [x] Redux
+- [x] Es6 classes
+- [x] API fetches
+- [x] Enzyme & Jest testing
+- [x] Webpack
+- [x] NPM
+
+
+## Licensing
+
+All credit goes to <a href="turing.io">Turing School of Software</a> for providing the project specifications.

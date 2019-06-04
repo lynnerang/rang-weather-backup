@@ -3,8 +3,9 @@ import { shallow } from 'enzyme';
 import { Forecast, mapStateToProps, mapDispatchToProps } from './Forecast';
 import { mockForecastData, mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
 import { addForecastData } from '../../actions';
+import { fetchForecastData } from '../../api/fetchForecastData';
 
-jest.mock('../../util/api');
+jest.mock('../../api/fetchForecastData');
 
 describe('Forecast', () => {
   let wrapper;

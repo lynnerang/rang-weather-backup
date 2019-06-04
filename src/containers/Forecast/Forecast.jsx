@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addForecastData } from '../../actions';
 import { cleanForecastData } from '../../util/cleaners';
-import { fetchForecastData } from '../../util/api';
+import { fetchForecastData } from '../../api/fetchForecastData';
 import StatBlock from '../../components/StatBlock/StatBlock';
 import PropTypes from 'prop-types';
 

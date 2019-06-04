@@ -15,11 +15,10 @@
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  opacity: .9;
   background: linear-gradient(to bottom right, #1b4b5b, rgb(19, 54, 65));
   position: fixed;
   width: 100vw;
-  z-index: 3;
+  z-index: 3000;
 
   .App-header-left {
     display: flex;

@@ -3,8 +3,9 @@ import { shallow } from 'enzyme';
 import { CurrentStats, mapStateToProps, mapDispatchToProps } from './CurrentStats';
 import { mockCurrentStats, mockHistoricalStats, mockForecastData } from '../../util/mockData';
 import { addHistoricalStats, addCurrentStats } from '../../actions';
+import { fetchCurrentStats } from '../../api/fetchCurrentStats';
 
-jest.mock('../../util/api')
+jest.mock('../../api/fetchCurrentStats')
 
 describe('CurrentStats', () => {
   let wrapper;
@@ -79,7 +80,7 @@ describe('CurrentStats', () => {
 
       const mappedProps = mapDispatchToProps(mockDispatch);
 
-      mappedProps.addForecastData(mockForecastData)
+      mappedProps.addCurrentStats(mockCurrentStats)
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
