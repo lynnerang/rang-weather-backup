@@ -96,3 +96,36 @@
   }
 
 }
+
+@import url('https://fonts.googleapis.com/css?family=Wallpoet');
+
+.compass {
+  position: absolute;
+  top: 22px;
+  right: 21px;
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+}
+
+.compass .disc {
+  position: absolute;
+  right: 20px;
+	z-index: 200;
+	background: url('https://i.ibb.co/7jR95bx/compass2.png');
+	width: 65px;
+	height: 65px;
+	background-size: 100%;
+}
+
+.compass .arrow {
+	position: absolute;
+  right: 20px;
+	z-index: 1000;
+	background: url('http://dev.rvltn.eu/compass/arrow.svg');
+	width: 65px;
+	height: 65px;
+	background-size: 100%;
+  transform: rotate(var(--degrees));
+  transition: 0.75s all;
+}
