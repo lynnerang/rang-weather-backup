@@ -19,9 +19,11 @@ This was a custom app I built for my household to track weather metrics we cared
 
 ## Screenshots
 
-![Home page](/src/screenshots/1.png)
-![General forecast stats](/src/screenshots/2.png)
-![Hourly forecast](/src/screenshots/3.png)
+![Home page top](/screenshots/1.png)
+![Home page bottom](/screenshots/2.png)
+![Forecast page top](/screenshots/3.png)
+![Forecast page bottom](/screenshots/4.png)
+![Navigation](/src/screenshots/5.png)
 
 
 ## Getting Started
@@ -50,37 +52,35 @@ Then, go to `http://localhost:3000/` in your browser to see the code running in 
 
 ## How to Use
 
-1. On the home page, you can see horizontal scrolling lists of movies from different categories, and you can click on any one to view more details.
-2. You can use the global navigation to click into different categories of movies, and can view movie details from clicking on any poster/title.
-3. You can click 'Sign Up' to create an account and keep track of your favorite movies.
-4. Once logged in, you'll see an option to add movies to your favorites on any movie details page.
-5. You can then view a list of all your favorite movies from the 'Favorites' link in navigation.
+1. On the home page, you can see the current metrics from a specific AmbientWeather device and how they have been trending over the past ten hours.
+2. On the forecast page, you can see weather forcast data from Darksky like the high and low temperature for the day, sunrise and sunset times, and whether a storm is nearby.
+3. Below on the forecast page, you can also see hourly metrics of the weather for the next twelve hours.
 
 
 ## UI Design
 
-The spec we were given had no information on UI design elements, so we started by wireframing a general idea of our layout.  
+The spec I was given had no information on UI design elements, so I started by wireframing a general idea of the layout.  
 
-![Wireframes](/src/screenshots/5.png)
+![Wireframes](/screenshots/6.png)
 
-Then we created a high-fidelity prototype of the design on Figma to have a more detailed idea of where we wanted everything to go on the different web pages.
+Then I created a high-fidelity prototype of the design on Figma to have a more detailed idea of where I wanted everything to go on the different screens pages.
 
-![Figma designs](/src/screenshots/6.png)
+![Figma designs](/screenshots/7.png)
 
 
 ## Project Emphasis
 
-View the project specification on the <a href="http://frontend.turing.io/projects/movie-tracker.html">Turing webpage for this project</a>.
+View the project specification on the <a href="http://frontend.turing.io/projects/binary-challenge.html">Turing webpage for this project</a>.
 
 - [x] HTML & CSS 
 - [x] Flex-box
-- [x] Grid CSS
 - [x] Wireframing
 - [x] UI design
 - [x] React
 - [x] React router
 - [x] Redux
 - [x] Es6 classes
+- [x] Async JavaScript
 - [x] API fetches
 - [x] Enzyme & Jest testing
 - [x] Webpack

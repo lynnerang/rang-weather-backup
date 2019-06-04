@@ -18,7 +18,7 @@
   background: linear-gradient(to bottom right, #1b4b5b, rgb(19, 54, 65));
   position: fixed;
   width: 100vw;
-  z-index: 3000;
+  z-index: 6000;
 
   .App-header-left {
     display: flex;
@@ -58,6 +58,8 @@
   align-items: flex-start;
   justify-content: center;
   z-index: 4;
+  border-bottom: 2px solid rgb(55, 91, 104);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
 
   .nav-link {
     text-decoration: none;
