@@ -1,6 +1,6 @@
 export const cleanStats = stats => {
   return ({
-      timestamps: stats.date.map(i => parseInt(i.date.split(':')[0].split('T')[1], 10)),
+      timestamp: stats.date,
       temp: {
         stat1: stats.tempinf,
         stat2: stats.tempf,
@@ -9,8 +9,8 @@ export const cleanStats = stats => {
         label2: 'Outdoor'
       },
       humidity: {
-        stat1: (stats.humidityin*100).toFixed(1),
-        stat2: (stats.humidity*100).toFixed(1),
+        stat1: stats.humidityin.toFixed(1),
+        stat2: stats.humidity.toFixed(1),
         unit: '%',
         label1: 'Indoor',
         label2: 'Outdoor'
@@ -24,7 +24,7 @@ export const cleanStats = stats => {
         unit: '°F'
       },
       wind: {
-        stat1: (stats.windspeedmph * .447).toFixed(2),
+        stat1: (stats.windspeedmph * .447).toFixed(1),
         stat2: stats.winddir,
         unit: 'M/SEC',
         label1: 'Speed',
@@ -42,7 +42,7 @@ export const cleanHistoricalStats = snapshots => {
   });
   const last12s = hourly.slice(0, 12).reverse();
 
-  return last12s.map(record => cleanStats(record));
+  return last12s.map(instance => cleanStats(instance));
 }
 
 export const cleanForecastData = data => {

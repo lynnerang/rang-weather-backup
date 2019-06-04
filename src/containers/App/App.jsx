@@ -30,7 +30,7 @@ export class App extends Component {
           {nav}
           <header className="App-header">
             <div className="App-header-left">
-              <img className="App-logo" src={require('../../images/rangweatherlogo.png')} />
+              <img className="App-logo" src={require('../../images/rangweatherlogo.png')} alt="App logo" />
               <h1>RangWeather</h1>
             </div>
             <div className="App-header-right">
