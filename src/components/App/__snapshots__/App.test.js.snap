@@ -42,6 +42,11 @@ exports[`App matches the snapshot when not showing navigation 1`] = `
         path="/forecast"
         render={[Function]}
       />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="*"
+      />
     </Switch>
   </main>
 </div>
@@ -107,6 +112,11 @@ exports[`App matches the snapshot when showNav is set to true 1`] = `
         exact={true}
         path="/forecast"
         render={[Function]}
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="*"
       />
     </Switch>
   </main>
