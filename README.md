@@ -20,11 +20,11 @@ This was a custom app I built for my household to track weather metrics we cared
 
 ## Screenshots
 
-![Home page top](/screenshots/1.png =300x)
-![Home page bottom](/screenshots/2.png =300x)
-![Forecast page top](/screenshots/3.png =300x)
-![Forecast page bottom](/screenshots/4.png =300x)
-![Navigation](/src/screenshots/5.png =300x)
+![Home page top](/screenshots/1.png)
+![Home page bottom](/screenshots/2.png)
+![Forecast page top](/screenshots/3.png)
+![Forecast page bottom](/screenshots/4.png)
+![Navigation](/src/screenshots/5.png)
 
 
 ## Getting Started
