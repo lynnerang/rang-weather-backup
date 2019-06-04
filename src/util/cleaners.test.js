@@ -1,23 +1,30 @@
-import { cleanStats, cleanHistoricalStats } from './cleaners';
-import { mockCurrentStats, mockHistoricalStats, mockRawCurrentStats } from './mockData';
+import { cleanStats, cleanHistoricalStats, cleanForecastData } from './cleaners';
+import { mockCurrentStats, mockHistoricalStats, mockRawCurrentStats, mockRawHistoricalStats, mockForecastData, mockRawForecastData } from './mockData';
 
-const mockRawHistoricalStats = [
-  mockRawCurrentStats,
-  { ...mockRawCurrentStats, date: '2019-05-31T20:32:20.000Z'}
-]
 
 describe('cleanStats', () => {
   it('should return a cleaned version of stats data', () => {
 
-    const res = cleanStats(mockRawCurrentStats);
-    expect(res).toEqual(mockCurrentStats);
+    const result = cleanStats(mockRawCurrentStats);
+
+    expect(result).toEqual(mockCurrentStats);
   });
 });
 
 describe('cleanHistoricalStats', () => {
   it('should return a cleaned version of historical stats data', () => {
 
-    const res = cleanHistoricalStats(mockRawHistoricalStats);
-    expect(res).toEqual([mockHistoricalStats]);
+    const result = cleanHistoricalStats(mockRawHistoricalStats);
+
+    expect(result).toEqual(mockHistoricalStats);
+  });
+});
+
+describe('cleanForecastData', () => {
+  it('should return a cleaned version of forecast data', () => {
+
+    const result = cleanForecastData(mockRawForecastData);
+
+    expect(result).toEqual(mockForecastData);
   });
 });

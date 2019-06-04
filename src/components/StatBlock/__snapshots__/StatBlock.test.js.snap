@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatBlock matches the snapshot when it has both a chart and stats 1`] = `
+<article
+  className="StatBlock wind "
+>
+  <img
+    alt=""
+    className="StatBlock-bg"
+    src="windbg.png"
+  />
+  <div
+    className="StatBlock-header"
+  >
+    <img
+      alt="wind icon"
+      className="StatBlock-icon"
+      src="windicon.png"
+    />
+    <h3>
+      wind
+    </h3>
+  </div>
+  <div
+    className="StatBlock-metrics"
+  >
+    <div
+      className="metric left-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        0.8
+        <span
+          className="unit-txt"
+        >
+          M/SEC
+        </span>
+      </p>
+      <p
+        className="metric-label metric-label-wind"
+      >
+        Speed
+      </p>
+    </div>
+    <div
+      className="metric right-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        94
+        <span
+          className="unit-txt"
+        >
+          M/SEC
+        </span>
+      </p>
+      <p
+        className="metric-label metric-label-wind"
+      >
+        Direction
+      </p>
+    </div>
+  </div>
+  <div
+    className="StatBlock-graph"
+  >
+    <Line
+      data={
+        Object {
+          "datasets": Array [
+            Object {
+              "borderColor": "white",
+              "data": Array [
+                5,
+              ],
+              "maintainAspectRatio": false,
+            },
+          ],
+          "labels": undefined,
+        }
+      }
+      height={60}
+      options={
+        Object {
+          "elements": Object {
+            "line": Object {
+              "tension": 0,
+            },
+            "point": Object {
+              "radius": 0,
+            },
+          },
+          "legend": Object {
+            "display": false,
+          },
+          "scales": Object {
+            "xAxes": Array [
+              Object {
+                "gridLines": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                },
+                "ticks": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "fontColor": "rgba(0, 0, 0, 0.5)",
+                  "fontSize": 10,
+                },
+              },
+            ],
+            "yAxes": Array [
+              Object {
+                "gridLines": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "drawBorder": false,
+                },
+                "ticks": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "fontColor": "rgba(0, 0, 0, 0.5)",
+                  "fontSize": 10,
+                },
+              },
+            ],
+          },
+        }
+      }
+    />
+  </div>
+</article>
+`;
+
+exports[`StatBlock should match the snapshot when it has a chart but no stats 1`] = `
+<article
+  className="StatBlock temp block-short"
+>
+  <img
+    alt=""
+    className="StatBlock-bg"
+    src="tempbg.png"
+  />
+  <div
+    className="StatBlock-header"
+  >
+    <img
+      alt="temp icon"
+      className="StatBlock-icon"
+      src="tempicon.png"
+    />
+    <h3>
+      temperature
+    </h3>
+  </div>
+  <div
+    className="StatBlock-metrics"
+  >
+    <div
+      className="metric left-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        <span
+          className="unit-txt"
+        />
+      </p>
+      <p
+        className="metric-label metric-label-temp"
+      />
+    </div>
+    <div
+      className="metric right-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        <span
+          className="unit-txt"
+        />
+      </p>
+      <p
+        className="metric-label metric-label-temp"
+      />
+    </div>
+  </div>
+  <div
+    className="StatBlock-graph"
+  >
+    <Line
+      data={
+        Object {
+          "datasets": Array [
+            Object {
+              "borderColor": "white",
+              "data": Array [
+                "63.5",
+                "60.8",
+                "59.2",
+                "58.5",
+                "57.5",
+                "55.3",
+                "53.3",
+                "51.6",
+                "51.5",
+                "56.1",
+              ],
+              "maintainAspectRatio": false,
+            },
+          ],
+          "labels": undefined,
+        }
+      }
+      height={70}
+      options={
+        Object {
+          "elements": Object {
+            "line": Object {
+              "tension": 0,
+            },
+            "point": Object {
+              "radius": 0,
+            },
+          },
+          "legend": Object {
+            "display": false,
+          },
+          "scales": Object {
+            "xAxes": Array [
+              Object {
+                "gridLines": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                },
+                "ticks": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "fontColor": "rgba(0, 0, 0, 0.5)",
+                  "fontSize": 10,
+                },
+              },
+            ],
+            "yAxes": Array [
+              Object {
+                "gridLines": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "drawBorder": false,
+                },
+                "ticks": Object {
+                  "color": "rgba(255, 255, 255, 0.3)",
+                  "fontColor": "rgba(0, 0, 0, 0.5)",
+                  "fontSize": 10,
+                },
+              },
+            ],
+          },
+        }
+      }
+    />
+  </div>
+</article>
+`;
+
+exports[`StatBlock should match the snapshot when it has stats but no chart 1`] = `
+<article
+  className="StatBlock storm block-short"
+>
+  <img
+    alt=""
+    className="StatBlock-bg"
+    src="stormbg.png"
+  />
+  <div
+    className="StatBlock-header"
+  >
+    <img
+      alt="storm icon"
+      className="StatBlock-icon"
+      src="stormicon.png"
+    />
+    <h3>
+      storm risk
+    </h3>
+  </div>
+  <div
+    className="StatBlock-metrics"
+  >
+    <div
+      className="metric left-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        <span
+          className="unit-txt"
+        />
+      </p>
+      <p
+        className="metric-label metric-label-storm"
+      />
+    </div>
+    <div
+      className="metric right-metric"
+    >
+      <p
+        className="metric-number"
+      >
+        <span
+          className="unit-txt"
+        />
+      </p>
+      <p
+        className="metric-label metric-label-storm"
+      />
+    </div>
+  </div>
+</article>
+`;
