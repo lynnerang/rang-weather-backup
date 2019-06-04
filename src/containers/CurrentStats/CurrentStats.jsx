@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import StatBlock from '../../components/StatBlock/StatBlock';
 import { connect } from 'react-redux';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
-import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
+import { fetchCurrentStats } from '../../api/fetchCurrentStats';
+import { fetchHistoricalStats } from '../../api/fetchHistoricalStats';
 import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
 import PropTypes from 'prop-types';
 

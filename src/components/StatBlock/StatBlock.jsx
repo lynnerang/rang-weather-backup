@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 export class StatBlock extends Component {
 	render() {
 		const { hasChart, hasNums, type, title, stats } = this.props || '';
-		const { stat1, stat2, unit, label1, label2 } = hasNums ? stats || '' : '';
-		const unit2 = stat2 ? unit : '';
+		let { stat1, stat2, unit, label1, label2 } = hasNums ? stats || '' : '';
+		let unit2 = stat2 ? unit : '';
 		const chartHeight = hasNums && hasChart ? 60 : 70;
 		const isShort = hasNums && hasChart ? '' : 'block-short';
 
@@ -17,6 +17,15 @@ export class StatBlock extends Component {
 						return result;
 					})
 				: this.props.data;
+
+		if ((type === 'wind' || type === 'storm') && stats) {
+			stat2 = (
+				<div className="compass">
+					<div className="arrow" style={{ transform: `rotate(${stat2}deg)` }} />
+					<div className="disc" id="compassDiscImg" />
+				</div>
+			);
+		}
 
 		const chartData = {
 			labels: this.props.timestamps,
