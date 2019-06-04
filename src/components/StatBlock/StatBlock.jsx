@@ -101,10 +101,10 @@ export class StatBlock extends Component {
 						<p className={`metric-label metric-label-${type}`}>{label1}</p>
 					</div>
 					<div className="metric right-metric">
-						<p className="metric-number">
+						<div className="metric-number">
 							{stat2}
 							<span className="unit-txt">{unit2}</span>
-						</p>
+						</div>
 						<p className={`metric-label metric-label-${type}`}>{label2}</p>
 					</div>
 				</div>
