@@ -7,6 +7,7 @@
 * [How to Use](#How-to-Use)
 * [Project Emphasis](#Project-Emphasis)
 * [UI Design](#UI-Design)
+* [Future Plans](#Future-Plans)
 * [License](#License)
 
 
@@ -66,6 +67,16 @@ The spec I was given had no information on UI design elements, so I started by w
 Then I created a high-fidelity prototype of the design on Figma to have a more detailed idea of where I wanted everything to go on the different screens pages.
 
 ![Figma designs](/screenshots/7.png)
+
+
+## Future Plans
+
+I plan to keep working on this to add more features like a notification setup interface where I can receive a text on my phone for instances like the following:
+- If the house temperature is outside the expected range
+- If it gets below freezing outside
+- If it is raining or snowing at my house
+
+I'd also like to add more interaction like tapping indoor vs outdoor to see metrics over time for each.
 
 
 ## Project Emphasis
