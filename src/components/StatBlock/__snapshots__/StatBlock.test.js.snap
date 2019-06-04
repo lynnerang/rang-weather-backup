@@ -46,7 +46,7 @@ exports[`StatBlock matches the snapshot when it has both a chart and stats 1`] =
     <div
       className="metric right-metric"
     >
-      <p
+      <div
         className="metric-number"
       >
         <div
@@ -70,7 +70,7 @@ exports[`StatBlock matches the snapshot when it has both a chart and stats 1`] =
         >
           M/SEC
         </span>
-      </p>
+      </div>
       <p
         className="metric-label metric-label-wind"
       >
@@ -185,13 +185,13 @@ exports[`StatBlock should match the snapshot when it has a chart but no stats 1`
     <div
       className="metric right-metric"
     >
-      <p
+      <div
         className="metric-number"
       >
         <span
           className="unit-txt"
         />
-      </p>
+      </div>
       <p
         className="metric-label metric-label-temp"
       />
@@ -313,13 +313,13 @@ exports[`StatBlock should match the snapshot when it has stats but no chart 1`] 
     <div
       className="metric right-metric"
     >
-      <p
+      <div
         className="metric-number"
       >
         <span
           className="unit-txt"
         />
-      </p>
+      </div>
       <p
         className="metric-label metric-label-storm"
       />

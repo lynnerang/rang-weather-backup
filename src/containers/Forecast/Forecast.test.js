@@ -20,6 +20,13 @@ describe('Forecast', () => {
     expect(wrapper).toMatchSnapshot();
   })
 
+  it('should have the appropriate default state', () => {
+    expect(wrapper.state()).toEqual({
+      isLoading: true,
+      error: ''
+    });
+  })
+
   it('should call fetchForecastData on mount', () => {
     wrapper.instance().componentDidMount();
 
