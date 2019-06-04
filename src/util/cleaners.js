@@ -24,7 +24,7 @@ export const cleanStats = stats => {
         unit: '°F'
       },
       wind: {
-        stat1: (stats.windspeedmph * .447).toFixed(2),
+        stat1: (stats.windspeedmph * .447).toFixed(1),
         stat2: stats.winddir,
         unit: 'M/SEC',
         label1: 'Speed',

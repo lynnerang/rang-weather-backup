@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
 export class StatBlock extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { hasChart, hasNums, type, title, stats } = this.props || '';
@@ -14,7 +11,7 @@ export class StatBlock extends Component {
     const isShort = hasNums && hasChart ? '' : 'block-short';
     
     const metrics = hasNums && hasChart ? this.props.data.map(i => {
-      const result = i.stat2 ? parseInt(i.stat2) : parseInt(i.stat1);
+      const result = i.stat2 && type !== 'wind' ? parseInt(i.stat2) : parseInt(i.stat1);
       return result;
     }) : this.props.data;
       
@@ -72,7 +69,7 @@ export class StatBlock extends Component {
 
     return (
       <article className={`StatBlock ${type} ${isShort}`}>
-        <img className="StatBlock-bg" src={require(`../../images/${type}bg.png`)} />
+        <img className="StatBlock-bg" src={require(`../../images/${type}bg.png`)} alt=""/>
         <div className="StatBlock-header">
           <img className="StatBlock-icon" src={require(`../../images/${type}icon.png`)} alt={`${type} icon`}/>
           <h3>{title}</h3>

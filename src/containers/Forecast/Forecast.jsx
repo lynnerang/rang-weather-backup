@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { darkskyApi } from '../../api/utilities';
 import { connect } from 'react-redux';
 import { addForecastData } from '../../actions';
 import { cleanForecastData } from '../../util/cleaners';
+import { fetchForecastData } from '../../util/api';
 import StatBlock from '../../containers/StatBlock/StatBlock';
 
 class Forecast extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkskyApi}/40.0114669,-105.0940768?exclude=minutely,alerts,flags`)
-      .then(res => res.json())
+    fetchForecastData()
       .then(data => cleanForecastData(data))
       .then(forecastData => this.props.addForecastData(forecastData))
       .catch(err => console.log(err))

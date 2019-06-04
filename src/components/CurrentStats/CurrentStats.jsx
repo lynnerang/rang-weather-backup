@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import StatBlock from '../../containers/StatBlock/StatBlock';
 import { connect } from 'react-redux';
 import { addCurrentStats, addHistoricalStats } from '../../actions';
-import { mockCurrentStats, mockHistoricalStats } from '../../util/mockData';
-import { fetchCurrentStats, fetchHistoricalStats, fetchBackyardData } from '../../util/api';
+import { fetchCurrentStats, fetchHistoricalStats } from '../../util/api';
 import { cleanStats, cleanHistoricalStats } from '../../util/cleaners';
 
 export class CurrentStats extends Component {
