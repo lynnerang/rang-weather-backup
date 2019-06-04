@@ -19,7 +19,7 @@ describe('Forecast', () => {
     expect(wrapper).toMatchSnapshot();
   })
 
-  it.skip('should call fetchForecastData on mount', () => {
+  it('should call fetchForecastData on mount', () => {
     wrapper.instance().componentDidMount();
 
     expect(fetchForecastData).toHaveBeenCalled();
