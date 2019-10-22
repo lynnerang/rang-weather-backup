@@ -1,5 +1,4 @@
 import { fetchHistoricalStats} from './fetchHistoricalStats';
-import { baseUrl, apiKey, appKey, macAddress } from '../api/utilities';
 import { mockHistoricalStats } from '../util/mockData';
 
 describe('fetchHistoricalStats', () => {
@@ -13,7 +12,7 @@ describe('fetchHistoricalStats', () => {
   });
 
   it('should call fetch with the correct arguments', async () => {
-    const expectedUrl = `${baseUrl}/${macAddress}?applicationKey=${appKey}&apiKey=${apiKey}`;
+    const expectedUrl = `https://api.ambientweather.net/v1/devices/${process.env.MAC_ADDRESS}?applicationKey=${process.env.ANBI_APP_KEY}&apiKey=${process.env.ANBI_API_KEY}`;
 
     await fetchHistoricalStats();
 

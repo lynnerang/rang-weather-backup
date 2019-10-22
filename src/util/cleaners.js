@@ -34,6 +34,8 @@ export const cleanStats = stats => {
 } 
 
 export const cleanHistoricalStats = snapshots => {
+  // snapshots.splice(0, 71);
+  console.log(snapshots);
   const hourly = snapshots.filter(instance => {
     const mins = instance.date.split(':')[1];
     if (mins === '00') {

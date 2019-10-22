@@ -46,7 +46,7 @@ export class CurrentStats extends Component {
   render() {
     const { temp, humidity, pressure, dew, wind } = this.props.currentStats;
 
-    const timestamps = this.props.historicalStats.map(i => parseInt(i.timestamp.split(':')[0].split('T')[1], 10) + ':');
+    const timestamps = this.props.historicalStats.map(i => parseInt(i.timestamp.split(':')[0].split('T')[1], 10) - 6 + ':');
 
     let page;
 

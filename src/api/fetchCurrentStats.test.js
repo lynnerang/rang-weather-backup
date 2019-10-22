@@ -1,4 +1,3 @@
-import { baseUrl, apiKey, appKey } from '../api/utilities';
 import { mockCurrentStats } from '../util/mockData';
 import { fetchCurrentStats } from '../api/fetchCurrentStats';
 
@@ -13,7 +12,7 @@ describe('fetchCurrentStats', () => {
   });
 
   it('should call fetch with the correct arguments', async () => {
-    const expectedUrl = `${baseUrl}?applicationKey=${appKey}&apiKey=${apiKey}`;
+    const expectedUrl = `https://api.ambientweather.net/v1/devices?applicationKey=${process.env.REACT_APP_ANBI_APP_KEY}&apiKey=${process.env.REACT_APP_ANBI_API_KEY}`;
 
     await fetchCurrentStats();
 
