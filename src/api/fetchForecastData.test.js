@@ -1,5 +1,4 @@
 import { fetchForecastData } from '../api/fetchForecastData';;
-import { darkskyApi } from '../api/utilities';
 import { mockForecastData } from '../util/mockData';
 
 
@@ -16,7 +15,7 @@ describe('fetchForecastData', () => {
   });
 
   it('should call fetch with the correct paramters', async () => {
-    const expectedUrl = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkskyApi}/40.0114669,-105.0940768?exclude=minutely,alerts,flags`;
+    const expectedUrl = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.DARKSKY_API_KEY}/40.0114669,-105.0940768?exclude=minutely,alerts,flags`;
 
     await fetchForecastData();
     expect(window.fetch).toHaveBeenCalledWith(expectedUrl);

@@ -3,11 +3,12 @@ import { Switch, Route, NavLink } from 'react-router-dom';
 import CurrentStats from '../../containers/CurrentStats/CurrentStats';
 import Forecast from '../../containers/Forecast/Forecast';
 import My404Component from '../My404Component/My404Component';
+// require('dotenv').config();
 
 export class App extends Component {
 	state = {
 		showNav: false
-	};
+  };
 
 	render() {
 		const nav = this.state.showNav ? (
