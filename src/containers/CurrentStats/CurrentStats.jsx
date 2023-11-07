@@ -25,7 +25,7 @@ export class CurrentStats extends Component {
 
   getCurrentStats = async () => {
     return await fetchCurrentStats()
-      .then(data => cleanStats(data[0].lastData))
+      .then(data => data && cleanStats(data[0].lastData))
       .then(currentStats => {
         this.props.addCurrentStats(currentStats)
         this.setState({error: '', isLoading: false})
