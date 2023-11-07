@@ -5,7 +5,9 @@ import { mockCurrentStats, mockHistoricalStats, mockForecastData } from '../../u
 import { addHistoricalStats, addCurrentStats } from '../../actions';
 import { fetchCurrentStats } from '../../api/fetchCurrentStats';
 
-jest.mock('../../api/fetchCurrentStats')
+jest.mock('../../api/fetchCurrentStats', () => ({
+  fetchCurrentStats: jest.fn(() => Promise.resolve([{ lastData: mockCurrentStats }]))
+}));
 
 describe('CurrentStats', () => {
   let wrapper;
@@ -21,23 +23,30 @@ describe('CurrentStats', () => {
       historicalStats={mockHistoricalStats}
       addCurrentStats={mockAddCurrentStats}
       addHistoricalStats={mockAddHistoricalStats}
-    />)
-
-    jest.spyOn(wrapper.instance(), 'getCurrentStats');
-    jest.spyOn(wrapper.instance(), 'getHistoricalStats');
-
+    />);
   })
 
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   })
 
-  it('calls getCurrentStats and getHistoricalStats on mount', () => {
-    jest.spyOn(wrapper.instance(), 'getCurrentStats');
+  it('calls getCurrentStats on mount', async () => {
+    // Clear mock
+    fetchCurrentStats.mockClear();
+    
+    // You need to re-render the component because componentDidMount should be called again
+    wrapper = shallow(<CurrentStats
+      currentStats={mockCurrentStats}
+      historicalStats={mockHistoricalStats}
+      addCurrentStats={mockAddCurrentStats}
+      addHistoricalStats={mockAddHistoricalStats}
+    />);
 
-    wrapper.instance().componentDidMount();
+    // Since componentDidMount is lifecycle method, it's automatically called on mount, 
+    // and because getCurrentStats is async, we need to wait for it to finish
+    await wrapper.instance().componentDidMount();
 
-    expect(wrapper.instance().getCurrentStats).toHaveBeenCalled();
+    expect(fetchCurrentStats).toHaveBeenCalled();
   })
 
   it('should have the appropriate default state', () => {
@@ -48,9 +57,14 @@ describe('CurrentStats', () => {
     })
   })
 
-  it('should call fetchCurrentStats when getCurrentStats is called', () => {
-    wrapper.instance().getCurrentStats();
+  it('should call fetchCurrentStats when getCurrentStats is called', async () => {
+    // Clear mock
+    fetchCurrentStats.mockClear();
 
+    // Call the method on the instance of the component
+    await wrapper.instance().getCurrentStats();
+
+    // Verify the mock was called
     expect(fetchCurrentStats).toHaveBeenCalled();
   })
 
