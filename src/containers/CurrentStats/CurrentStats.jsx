@@ -24,23 +24,33 @@ export class CurrentStats extends Component {
   }
 
   getCurrentStats = async () => {
-    return await fetchCurrentStats()
-      .then(data => data && cleanStats(data[0].lastData))
-      .then(currentStats => {
-        this.props.addCurrentStats(currentStats)
-        this.setState({error: '', isLoading: false})
-  })
-      .catch(err => this.setState({ error: 'Failed to load current stats' }))
+    try {
+      const data = await fetchCurrentStats();
+      if (!data || data.length === 0) {
+        throw new Error('No current stats data returned');
+      }
+      const cleanedData = cleanStats(data[0].lastData);
+      this.props.addCurrentStats(cleanedData);
+      this.setState({ error: '', isLoading: false });
+    } catch (err) {
+      console.error(err); // Log the error for debugging purposes
+      this.setState({ error: 'Failed to load current stats', isLoading: false });
+    }
   }
 
-  getHistoricalStats = () => {
-    fetchHistoricalStats()
-      .then(data => cleanHistoricalStats(data))
-      .then(historicalStats => {
-        this.props.addHistoricalStats(historicalStats);
-        this.setState({ error: '' })
-  })
-      .catch(err => this.setState({ error: 'Failed to load historical stats' }))
+  getHistoricalStats = async () => {
+    try {
+      const data = await fetchHistoricalStats();
+      if (!data) {
+        throw new Error('No historical stats data returned');
+      }
+      const cleanedData = cleanHistoricalStats(data);
+      this.props.addHistoricalStats(cleanedData);
+      this.setState({ error: '' });
+    } catch (err) {
+      console.error(err); // Log the error for debugging purposes
+      this.setState({ error: 'Failed to load historical stats' });
+    }
   }
 
   render() {
