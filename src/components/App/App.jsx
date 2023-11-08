@@ -1,12 +1,5 @@
-class UnsafeComponent extends React.Component {
-  render() {
-    // WARNING: This is intentionally vulnerable code
-    const dangerouslySetInnerHTML = { __html: this.props.userInput };
-    
-    // This will render the user input as HTML, which is unsafe
-    return <div dangerouslySetInnerHTML={dangerouslySetInnerHTML} />;
-  }
-}
+const SECRET_API_KEY = '12345-mysecretkey-67890';
+console.log(SECRET_API_KEY);
 
 import React, { Component } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
