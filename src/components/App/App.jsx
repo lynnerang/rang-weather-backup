@@ -1,23 +1,12 @@
-const express = require('express');
-const mysql = require('mysql');
-const app = express();
-
-// ... other middleware or route handlers ...
-
-// A deliberately vulnerable SQL query handler
-app.get('/unsafe', function(req, res) {
-  let userId = req.query.id; // This could be user-controlled input
-  // Vulnerable SQL query
-  let query = 'SELECT * FROM users WHERE id = ' + userId;
-  
-  // Execute the SQL query
-  db.query(query, function(error, results, fields) {
-    if (error) throw error;
-    // Send results to the client
-    res.send(results);
-  });
-});
-
+class UnsafeComponent extends React.Component {
+  render() {
+    // WARNING: This is intentionally vulnerable code
+    const dangerouslySetInnerHTML = { __html: this.props.userInput };
+    
+    // This will render the user input as HTML, which is unsafe
+    return <div dangerouslySetInnerHTML={dangerouslySetInnerHTML} />;
+  }
+}
 
 import React, { Component } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
